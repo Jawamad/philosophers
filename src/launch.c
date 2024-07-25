@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:17:55 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/25 11:24:34 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:08:44 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,15 @@ void	*monitor(void *param)
 		pthread_mutex_lock(&spaghetti->check_finish);
 		spaghetti->finish = check_finish(spaghetti);
 		check_meal = spaghetti->finish;
-		pthread_mutex_unlock(&spaghetti->check_finish);
-		pthread_mutex_lock(&spaghetti->check_finish);
 		spaghetti->death = check_death(&spaghetti->philos[i]);
 		check_die = spaghetti->death;
-		pthread_mutex_unlock(&spaghetti->check_finish);
-		pthread_mutex_lock(&spaghetti->check_finish);
 		if (spaghetti->death)
 			printlock(&spaghetti->philos[i], 5, spaghetti->start_time);
 		i++;
 		if (i == spaghetti->nb_philo)
 			i = 0;
 		pthread_mutex_unlock(&spaghetti->check_finish);
-		usleep(10000);
+		ft_usleep(5);
 	}
 	return (NULL);
 }

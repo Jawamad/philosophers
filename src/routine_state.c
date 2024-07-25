@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 10:22:46 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/25 11:12:42 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:47:58 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	pickup_forks(t_philo *philo, t_table *spaghetti)
 	printlock(philo, 1, spaghetti->start_time);
 	pthread_mutex_unlock(&spaghetti->check_finish);
 	if (nbphilo == 1)
-		usleep((philo->t_to_die * 1000));
+		ft_usleep((philo->t_to_die));
 	if (!locksecfork(philo, spaghetti))
 		return(0);
 	return (1);
@@ -58,7 +58,7 @@ int	eat(t_philo *philo, t_table *spaghetti)
 	pthread_mutex_lock(&spaghetti->check_finish);
 	printlock(philo, 2, spaghetti->start_time);
 	pthread_mutex_unlock(&spaghetti->check_finish);
-	usleep(philo->t_to_eat * 1000);
+	ft_usleep(philo->t_to_eat);
 	pthread_mutex_lock(&philo->check_modif);
 	philo->nb_eat++;
 	if (philo->nb_eat == philo->nb_must_eat)
@@ -78,7 +78,7 @@ int	ph_sleep(t_philo *philo, long int start_time, t_table *spaghetti)
 	}
 	printlock(philo, 3, start_time);
 	pthread_mutex_unlock(&spaghetti->check_finish);
-	usleep(philo->t_to_sleep * 1000);
+	ft_usleep(philo->t_to_sleep);
 	return (1);
 }
 

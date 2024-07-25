@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:11:36 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/25 11:17:07 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:37:30 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,6 @@ void	printlock(t_philo *philo, int code, long int start_time)
 
 void	unlockfork(t_philo *philo)
 {
-	/* if (philo->index % 2 == 0)
-	{ */
-		pthread_mutex_unlock(philo->right_fork);
-		pthread_mutex_unlock(philo->left_fork);
-	/* } */
-/* 	else
-	{
-		pthread_mutex_unlock(philo->left_fork);
-		pthread_mutex_unlock(philo->right_fork);
-	} */
+	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(philo->left_fork);
 }
