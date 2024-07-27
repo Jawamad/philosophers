@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:07:59 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/25 09:47:25 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/28 00:15:43 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	init_philo(int argc, char **argv, t_philo *philo)
 			return (0);
 		}
 	}
-	init_phil_carac(argv,philo);
+	init_phil_carac(argv, philo);
 	return (1);
 }
 
@@ -47,7 +47,6 @@ void	init_phil_carac(char **argv, t_philo *philo)
 	philo->has_finish = 0;
 	pthread_mutex_init(&philo->check_modif, NULL);
 }
-
 
 int	init_spaghetti(int argc, char **argv, t_table *spaghetti)
 {

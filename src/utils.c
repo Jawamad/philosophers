@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/17 14:11:36 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/25 13:37:30 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/27 23:23:56 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,29 +59,28 @@ void	free_all(t_table *spaghetti)
 	free(spaghetti->philos);
 }
 
-void	printlock(t_philo *philo, int code, long int start_time)
+void	printlock(t_philo *philo, int code)
 {
 	struct timeval	time;
+	long int		now;
 
 	pthread_mutex_lock(philo->print);
 	gettimeofday(&time, NULL);
-	if (code == 0)
-		printf("%ld %d is thinking\n",
-			conv_time(time) - start_time, philo->index);
-	if (code == 1)
-		printf("%ld %d has taken a fork\n",
-			conv_time(time) - start_time, philo->index);
-	if (code == 2)
-		printf("%ld %d is eating\n",
-			conv_time(time) - start_time, philo->index);
-	if (code == 3)
-		printf("%ld %d is sleeping\n",
-			conv_time(time) - start_time, philo->index);
-	if (code == 4)
-		printf("%ld %d has finish to eat\n",
-			conv_time(time) - start_time, philo->index);
+	pthread_mutex_lock(&philo->spaghetti->check_finish);
+	now = conv_time(time) - philo->spaghetti->start_time;
+	pthread_mutex_unlock(&philo->spaghetti->check_finish);
+	if (code == 0 && !checkup_death(philo->spaghetti))
+		printf("%ld %d is thinking\n", now, philo->index);
+	if (code == 1 && !checkup_death(philo->spaghetti))
+		printf("%ld %d has taken a fork\n", now, philo->index);
+	if (code == 2 && !checkup_death(philo->spaghetti))
+		printf("%ld %d is eating\n", now, philo->index);
+	if (code == 3 && !checkup_death(philo->spaghetti))
+		printf("%ld %d is sleeping\n", now, philo->index);
+	if (code == 4 && !checkup_death(philo->spaghetti))
+		printf("%ld %d has finish to eat\n", now, philo->index);
 	if (code == 5)
-		printf("%ld %d died\n", conv_time(time) - start_time, philo->index);
+		printf("%ld %d died\n", now, philo->index);
 	pthread_mutex_unlock(philo->print);
 }
 

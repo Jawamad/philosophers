@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/15 13:18:19 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/25 09:36:40 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:12:53 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		ft_error(int code);
 
 int			pickup_forks(t_philo *philo, t_table *spaghetti);
 int			eat(t_philo *philo, t_table *spaghetti);
-int			ph_sleep(t_philo *philo, long int start_time, t_table *spaghetti);
+int			ph_sleep(t_philo *philo, t_table *spaghetti);
 void		lockfirstfork(t_philo *philo);
 int			locksecfork(t_philo *philo, t_table *spaghetti);
 
@@ -75,7 +75,7 @@ int			locksecfork(t_philo *philo, t_table *spaghetti);
 int			ft_atoi(const char *nptr);
 long int	conv_time(struct timeval time);
 void		free_all(t_table *spaghetti);
-void		printlock(t_philo *philo, int code, long int start_time);
+void		printlock(t_philo *philo, int code);
 void		unlockfork(t_philo *philo);
 /* launch.c */
 
