@@ -6,7 +6,7 @@
 /*   By: flmuller <flmuller@student.42perpignan.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/16 15:07:59 by flmuller          #+#    #+#             */
-/*   Updated: 2024/07/28 00:15:43 by flmuller         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:03:59 by flmuller         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	init_sit(int argc, char **argv, t_table *spaghetti)
 			spaghetti->philos[i].left_fork = &spaghetti->forks[nb_philo - 1];
 		else
 			spaghetti->philos[i].left_fork = &spaghetti->forks[i - 1];
-		spaghetti->philos[i].index = i;
+		spaghetti->philos[i].index = i + 1;
 		spaghetti->philos[i].spaghetti = spaghetti;
 		i++;
 	}
